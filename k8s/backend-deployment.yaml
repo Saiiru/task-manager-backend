@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: saiiru/task-manager-backend:latest
+          image: your-backend-image
           ports:
             - containerPort: 8080
           env:
@@ -49,3 +49,8 @@ spec:
                 secretKeyRef:
                   name: task-manager-secret
                   key: JWT_SECRET
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: task-manager-secret
+                  key: DATABASE_URL

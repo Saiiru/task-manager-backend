@@ -25,10 +25,15 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                withEnv(["KUBECONFIG=${env.KUBECONFIG}"]) {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     sh 'kubectl apply -f k8s/'
                 }
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
