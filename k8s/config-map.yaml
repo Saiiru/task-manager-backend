@@ -4,9 +4,7 @@ metadata:
   name: task-manager-config
   namespace: dev
 data:
+  DB_USER: postgres
   DB_NAME: tasks
-  DB_HOST: postgres
-  DB_PORT: "5432"
   PGADMIN_DEFAULT_EMAIL: admin@admin.com
-  PGADMIN_DEFAULT_PASSWORD: admin
   PGADMIN_PORT: "5050"
