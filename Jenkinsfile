@@ -25,7 +25,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'kubectl apply -f k8s/'
+                withEnv(["KUBECONFIG=${env.KUBECONFIG}"]) {
+                    sh 'kubectl apply -f k8s/'
+                }
             }
         }
     }
