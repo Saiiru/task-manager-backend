@@ -1,0 +1,88 @@
+type Task {
+  id: ID!
+  title: String!
+  description: String! # Adicionando a descrição
+  isCompleted: Boolean!
+  userId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  lastName: String!
+  avatar: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type AuthResponse {
+  user: User!
+  token: String!
+}
+
+type TaskEdge {
+  node: Task!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  totalCount: Int!
+}
+
+type TaskConnection {
+  edges: [TaskEdge!]!
+  pageInfo: PageInfo!
+}
+
+input TaskFilter {
+  search: String
+  page: Int
+  limit: Int
+}
+
+input NewTask {
+  title: String!
+  description: String! # Adicionando a descrição
+  userId: ID!
+}
+
+input UpdateTask {
+  id: ID!
+  title: String
+  description: String # Adicionando a descrição
+  isCompleted: Boolean
+}
+
+input UserRegister {
+  email: String!
+  password: String!
+  name: String!
+  lastName: String!
+  avatar: String
+}
+
+input UserLogin {
+  email: String!
+  password: String!
+}
+
+type Query {
+  tasks(filter: TaskFilter): TaskConnection!
+  task(id: ID!): Task
+  me: User!
+  user(id: ID!): User
+  userByEmail(email: String!): User
+  users: [User!]!
+}
+
+type Mutation {
+  createTask(input: NewTask!): Task!
+  updateTask(input: UpdateTask!): Task!
+  deleteTask(id: ID!): Boolean!
+  register(input: UserRegister!): User!
+  login(input: UserLogin!): AuthResponse!
+}
