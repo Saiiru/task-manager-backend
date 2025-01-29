@@ -1,0 +1,4 @@
+[submodule "task-manager-backend"]
+	path = task-manager-backend
+	url = https://github.com/Saiiru/task-manager-backend.git
+	branch = main
